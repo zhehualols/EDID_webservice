@@ -1,0 +1,18 @@
+body {
+    background-color: aliceblue;
+}
+
+input.Search {
+    position: relative;
+
+}
+
+button {
+    position: relative;
+}
+
+table {
+    position: relative;
+    border: 2px solid black;
+}
+

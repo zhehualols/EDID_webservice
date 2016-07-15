@@ -4,15 +4,33 @@
 <head>
     <link href="/static/css/edid.css" rel="stylesheet">
 
-    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
     <script>
         $(document).ready(function() {
-            $('#DisplayAll').click(function() {
-
-            })
-        })
+            $.getJSON('edid_semantics.json',
+                function(data) {
+                    var tr;
+                    for (var i = 0; i < data.length; i++) {
+                        tr = tr.append('<tr>');
+                        tr.append("<td>" + data[i].id + "</td>");
+                        tr.append("<td>" + data[i].prd_manufacturer_name + "</td>");
+                        tr.append("<td>" + data[i].prd_code + "</td>");
+                        tr.append("<td>" + data[i].prd_serial_no + "</td>");
+                        tr.append("<td>" + data[i].prd_week_of_manufacture + "</td>");
+                        tr.append("<td>" + data[i].prd_year_of_manufacture + "</td>");
+                        tr.append("<td>" + data[i].str_version_no + "</td>");
+                        tr.append("<td>" + data[i].str_revision_no + "</td>");
+                        tr.append("<td>" + data[i].monitor_name_tag + "</td>");
+                        tr.append('</tr>');
+                        $("EDID_table").append(tr);
+                    }
+                });
+        });
 
     </script>
+
 </head>
 
 <body>
@@ -20,7 +38,8 @@
     <button class="Search-button" id="search" type="button">Search</button>
     <button class="DisplayAll" id='DisplayAll' type="button">Display All Data!</button>
     <button class="export" id='export' type="button">Export</button>
-    <table>
+    <table id="EDID_table">
+
     </table>
 </body>
 
