@@ -2,32 +2,36 @@
 <html>
 
 <head>
-    <link href="/static/css/edid.css" rel="stylesheet">
+    <link href="/home/development/workspace/Edid_test/public/css/edid.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 
     <script>
         $(document).ready(function() {
-            $.getJSON('edid_semantics.json',
-                function(data) {
-                    var tr;
-                    for (var i = 0; i < data.length; i++) {
-                        tr = tr.append('<tr>');
-                        tr.append("<td>" + data[i].id + "</td>");
-                        tr.append("<td>" + data[i].prd_manufacturer_name + "</td>");
-                        tr.append("<td>" + data[i].prd_code + "</td>");
-                        tr.append("<td>" + data[i].prd_serial_no + "</td>");
-                        tr.append("<td>" + data[i].prd_week_of_manufacture + "</td>");
-                        tr.append("<td>" + data[i].prd_year_of_manufacture + "</td>");
-                        tr.append("<td>" + data[i].str_version_no + "</td>");
-                        tr.append("<td>" + data[i].str_revision_no + "</td>");
-                        tr.append("<td>" + data[i].monitor_name_tag + "</td>");
-                        tr.append('</tr>');
-                        $("EDID_table").append(tr);
-                    }
-                });
+            $("#DisplayAll").click(function() {
+                $.getJSON('data.json',
+                    function(data) {
+                        alert(data.length)
+                        alert(data[0].id)
+                        for (var i = 0; i < data.length; i++) {
+                            var tr = ("<tr>");
+                            var td1 = ("<td>" + data[i]["id"] + "</td>");
+                            var td2 = ("<td>" + data[i]["prd_manufacturer_name"] + "</td>");
+                            var td3 = ("<td>" + data[i]["prd_code"] + "</td>");
+                            var td4 = ("<td>" + data[i]["prd_serial_no"] + "</td>");
+                            var td5 = ("<td>" + data[i]["prd_week_of_manufacture"] + "</td>");
+                            var td6 = ("<td>" + data[i]["prd_year_of_manufacture"] + "</td>");
+                            var td7 = ("<td>" + data[i]["str_version_no"] + "</td>");
+                            var td8 = ("<td>" + data[i]["str_revision_no"] + "</td>");
+                            var td9 = ("<td>" + data[i]["monitor_name_tag"] + "</td></tr>");
+                            $("#tbody").append(tr + td1 + td2 + td3 + td4 + td5 + td6 + td7 + td8 + td9)
+                        }
+                    });
+            });
         });
+
+    </script>
 
     </script>
 
@@ -38,9 +42,20 @@
     <button class="Search-button" id="search" type="button">Search</button>
     <button class="DisplayAll" id='DisplayAll' type="button">Display All Data!</button>
     <button class="export" id='export' type="button">Export</button>
-    <table id="EDID_table">
-
-    </table>
+    <table id="EDID_table" style="width:100%">
+        <thead>
+            <th>Id</th>
+            <th>prd_manufacturer_name</th>
+            <th>prd_code</th>
+            <th>prd_serial_no</th>
+            <th>prd_week_of_manufacture</th>
+            <th>prd_year_of_manufacture</th>
+            <th>str_version_no</th>
+            <th>str_revision_no</th>
+            <th>monitor_name_tag</th>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
 </body>
 
 </html>
